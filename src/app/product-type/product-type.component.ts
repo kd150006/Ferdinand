@@ -14,8 +14,11 @@ export class ProductTypeComponent implements OnInit {
   constructor(private productTypeService: ProductTypeService) { }
 
   ngOnInit() {
-    this.productTypeService.getAllProductTypes()
-                            .then(data => this.productTypes = data);
+    this.getProductTypes();
   }
 
+  getProductTypes(): void {
+    this.productTypeService.getProductTypes()
+      .subscribe(productTypes => this.productTypes = productTypes);
+  }
 }

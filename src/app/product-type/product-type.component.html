@@ -1,29 +1,26 @@
-<table class="table table-bordered ">
-  <th>
-    
-  </th>
+<table class="table table-hovered table-bordered">
+  <tr>
+    <!-- <th>Status</th> -->
+    <th>Number</th>
+    <th>Name</th>
+    <!-- <th>GrossPrice</th> -->
+    <th>NetPrice</th>
+    <th>BarCode</th>
+    <th>SerialNumber</th>
+    <th>Stock</th>
+    <th>Status</th>
+  </tr>
   <tbody>
-     
+    <tr *ngFor="let productType of productTypes;">
+      <!-- <td>{{productType.status}}</td> -->
+      <td>{{productType.number}}</td>
+      <td>{{productType.name}}</td>
+      <!-- <td>{{productType.grossPrice}}</td> -->
+      <td>{{productType.netPrice}}</td>
+      <td>{{productType.barcode}}</td>
+      <td>{{productType.serialnumber}}</td>
+      <td>{{productType.stock}}</td>
+      <td>{{productType.status}}</td>
+    </tr>
   </tbody>
 </table>
-
-<table class="table table-hovered table-bordered">
-    <tr>
-        <th>Status</th>
-        <th>Number</th>
-        <th>Name</th>
-        <th>GrossPrice</th>
-        <th>NetPrice</th>
-        <th>BarCode</th>
-    </tr>
-    <tbody>
-        <tr *ngFor="let productType of productTypes;">
-            <td>{{productType.status}}></td>
-            <td>{{productType.number}}></td>
-            <td>{{productType.name}}></td>
-            <td>{{productType.grossPrice}}></td>
-            <td>{{productType.netPrice}}></td>
-            <td>{{productType.barcode}}></td>
-        </tr>
-    </tbody>
-  </table>

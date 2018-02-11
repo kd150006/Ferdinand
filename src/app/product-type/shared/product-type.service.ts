@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 import { ProductType } from './product-type.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class ProductTypeService {
-  private httpHeader = new HttpHeaders('application/json');
-  private baseUrl = 'http://localhost:52035/api/';
-  constructor(private httpService: HttpClient) { }
+  private baseUrl = 'http://localhost:52035/api/productTypes';
 
- public getAllProductTypes(): Promise<ProductType[]> {
-    return this.httpService.get(this.baseUrl + 'productTypes', {headers: this.httpHeader})
-                           .toPromise()
-                           .then(response => response as ProductType[]);
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  getProductTypes(): Observable<ProductType[]> {
+    return this.http.get<ProductType[]>(this.baseUrl);
   }
 }
