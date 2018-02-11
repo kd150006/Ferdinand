@@ -1,0 +1,29 @@
+<table class="table table-bordered ">
+  <th>
+    
+  </th>
+  <tbody>
+     
+  </tbody>
+</table>
+
+<table class="table table-hovered table-bordered">
+    <tr>
+        <th>Status</th>
+        <th>Number</th>
+        <th>Name</th>
+        <th>GrossPrice</th>
+        <th>NetPrice</th>
+        <th>BarCode</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let productType of productTypes;">
+            <td>{{productType.status}}></td>
+            <td>{{productType.number}}></td>
+            <td>{{productType.name}}></td>
+            <td>{{productType.grossPrice}}></td>
+            <td>{{productType.netPrice}}></td>
+            <td>{{productType.barcode}}></td>
+        </tr>
+    </tbody>
+  </table>
