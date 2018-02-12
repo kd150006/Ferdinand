@@ -3,21 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 
-import { ProductType } from './product-type.model';
+import { Stock } from './stock.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
-export class ProductTypeService {
-  private baseUrl = 'http://localhost:52035/api/productTypes';
+export class StockService {
+  private baseUrl = 'http://localhost:52035/api/stocks';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getProductTypes(): Observable<ProductType[]> {
-    return this.http.get<ProductType[]>(this.baseUrl);
+  getStocks(): Observable<Stock[]> {
+    return this.http.get<Stock[]>(this.baseUrl);
   }
 }

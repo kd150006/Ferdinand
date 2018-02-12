@@ -1,26 +1,24 @@
-<table class="table table-hovered table-bordered">
-  <tr>
-    <!-- <th>Status</th> -->
-    <th>Number</th>
-    <th>Name</th>
-    <!-- <th>GrossPrice</th> -->
-    <th>NetPrice</th>
-    <th>BarCode</th>
-    <th>SerialNumber</th>
-    <th>Stock</th>
-    <th>Status</th>
-  </tr>
-  <tbody>
+<!--
+
     <tr *ngFor="let productType of productTypes;">
-      <!-- <td>{{productType.status}}</td> -->
+      &lt;!&ndash; <td>{{productType.status}}</td> &ndash;&gt;
       <td>{{productType.number}}</td>
       <td>{{productType.name}}</td>
-      <!-- <td>{{productType.grossPrice}}</td> -->
+      &lt;!&ndash; <td>{{productType.grossPrice}}</td> &ndash;&gt;
       <td>{{productType.netPrice}}</td>
       <td>{{productType.barcode}}</td>
       <td>{{productType.serialnumber}}</td>
       <td>{{productType.stock}}</td>
       <td>{{productType.status}}</td>
-    </tr>
-  </tbody>
-</table>
+    </tr>-->
+
+
+<h2>Manage product types</h2>
+
+<ul class="product-type">
+  <li *ngFor="let producttype of productTypes">
+    <a routerLink="/detail/{{producttype.id}}">
+      <span class="badge">{{producttype.id}}</span>{{producttype.name}}
+    </a>
+  </li>
+</ul>

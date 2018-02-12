@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+import {Stock} from '../stock/shared/stock.model';
+import {StockService} from '../stock/shared/stock.service';
 
 @Component({
   selector: 'app-stock',
@@ -6,10 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
+  stocks: Stock[];
 
-  constructor() { }
+  constructor(private stockService: StockService) { }
 
   ngOnInit() {
+    this.getStocks();
+  }
+
+  getStocks(): void {
+    this.stockService.getStocks()
+      .subscribe(stocks => this.stocks = stocks);
   }
 
 }
