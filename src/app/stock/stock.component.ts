@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 
 import {Stock} from '../stock/shared/stock.model';
 import {StockService} from '../stock/shared/stock.service';
+import { SearchByPipe } from './shared/search-by.pipe';
+
 
 @Component({
   selector: 'app-stock',

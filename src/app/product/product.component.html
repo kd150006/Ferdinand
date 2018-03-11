@@ -1,0 +1,39 @@
+<div class="container">
+  <div>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./new">New</a>
+      </li>
+      <li>
+        <input type="text" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search">
+        <!-- <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+      </li>
+    </ul>
+  </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Number</th>
+        <th scope="col">Name</th>
+        <th scope="col">Barcode</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let product of products | searchByName : searchText">
+      <tr>
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.number}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.barcode}}</td>
+        <td>{{product.price}}</td>
+        <button class="btn" routerLink="./id/{{product.id}}">Details</button>
+      </tr>
+    </tbody>
+  </table>
+</div>

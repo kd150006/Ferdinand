@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ProductType } from '../product-type/shared/product-type.model';
-import { ProductTypeService } from '../product-type/shared/product-type.service';
+import { Product } from '../product/shared/product.model';
+import { ProductService } from '../product/shared/product.service';
 import { Stock } from '../stock/shared/stock.model';
 import { StockService } from '../stock/shared/stock.service';
 

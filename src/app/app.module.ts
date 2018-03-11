@@ -1,36 +1,55 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
-import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
+/* Own modules */
+import { ProductsModule } from './product/products.module';
+import { StockModule } from './stock/stock.module';
+import { BasketModule } from './basket/basket.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductTypeComponent } from './product-type/product-type.component';
-import { ProductTypeService } from './product-type/shared/product-type.service';
-import { StockComponent } from './stock/stock.component';
-import { StockService } from './stock/shared/stock.service';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { BodyComponent } from './body/body.component';
 
+import { MessagesComponent } from './messages/messages.component';
+import { MessageService } from './message.service';
+// import { BasketComponent } from './basket/basket.component';
+// import { ProductFormComponent } from './product-form/product-form.component';
+// import { StockFormComponent } from './stock-form/stock-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    ProductTypeComponent,
-    StockComponent
+    HeaderComponent,
+    FooterComponent,
+    BodyComponent,
+    HomeComponent,
+    MessagesComponent,
   ],
+
   imports: [
-    AppRoutingModule,
     BrowserModule,
+    HttpClientModule,
     FormsModule,
-    HttpClientModule
+    ProductsModule,
+    StockModule,
+    BasketModule,
+    AppRoutingModule
   ],
+
   providers: [
-    ProductTypeService,
-    StockService
+    MessageService
   ],
+
   bootstrap: [AppComponent]
+
 })
+
 export class AppModule { }
