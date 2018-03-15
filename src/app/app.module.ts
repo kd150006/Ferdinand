@@ -1,37 +1,33 @@
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 /* Own modules */
-import { ProductsModule } from './product/products.module';
+import { ProductsModule } from './product/product.module';
 import { StockModule } from './stock/stock.module';
-import { BasketModule } from './basket/basket.module';
+import { UserModule } from './user/user.module';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardHeaderComponent } from './dashboard/dashboard-header/dashboard-header.component';
+import { DashboardBodyComponent } from './dashboard/dashboard-body/dashboard-body.component';
+import { DashboardFooterComponent } from './dashboard/dashboard-footer/dashboard-footer.component';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { BodyComponent } from './body/body.component';
+
 
 import { MessagesComponent } from './messages/messages.component';
-import { MessageService } from './message.service';
-// import { BasketComponent } from './basket/basket.component';
-// import { ProductFormComponent } from './product-form/product-form.component';
-// import { StockFormComponent } from './stock-form/stock-form.component';
+import { MessageService } from './messages/shared/message.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    HeaderComponent,
-    FooterComponent,
-    BodyComponent,
+    DashboardHeaderComponent,
+    DashboardBodyComponent,
+    DashboardFooterComponent,
     HomeComponent,
-    MessagesComponent,
+    MessagesComponent
   ],
 
   imports: [
@@ -39,8 +35,8 @@ import { MessageService } from './message.service';
     HttpClientModule,
     FormsModule,
     ProductsModule,
+    UserModule,
     StockModule,
-    BasketModule,
     AppRoutingModule
   ],
 
@@ -52,4 +48,4 @@ import { MessageService } from './message.service';
 
 })
 
-export class AppModule { }
+export class AppModule {}

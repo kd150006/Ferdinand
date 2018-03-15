@@ -1,0 +1,22 @@
+<app-user-header #userHeader></app-user-header>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Login</th>
+      <th>Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let user of (users | searchBy : userHeader.searchText) | filterByStatus : userHeader.filterStatus; let i = index">
+    <tr class="table-secondary">
+      <td hidden>{{ user.id }}</td>
+      <td>{{ i+1 }}</td>
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.login }}</td>
+      <td>{{ user.email }}</td>
+      <button class="btn btn-info" routerLink="./id/{{user.id}}">Details</button>
+    </tr>
+  </tbody>
+</table>

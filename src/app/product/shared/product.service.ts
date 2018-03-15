@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Product } from './product.model';
-import { MessageService } from './../../message.service';
+import { MessageService } from './../../messages/shared/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,19 +21,6 @@ export class ProductService {
     private messageService: MessageService
   ) {}
 
-  /* GET heroes whose name contains search term */
-  searchProducts(term: string): Observable<Product[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http
-      .get<Product[]>(this.baseUrl + `/name/{term}`)
-      .pipe(
-        tap(_ => this.log(`found products matching "${term}"`)),
-        catchError(this.handleError<Product[]>('searchProducts', []))
-      );
-  }
   /////// REST METHODS ///////
   /** GET **/
   /* GET products from the server */
@@ -55,8 +42,29 @@ export class ProductService {
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
   }
+
+  /* GET Get all products for a given stock */
+  getProductsOnStock(id: number): Observable<Product[]> {
+    const url = `${this.baseUrl}/stock/${id}`;
+    return this.http
+      .get<Product[]>(url)
+      .pipe(
+        tap(products => this.log(`fetched products for stock id=${id}`)),
+        catchError(this.handleError<Product[]>(`getProducts for stock id=${id}`))
+      );
+  }
+  /* GET the total qtys of producst for a given stock */
+  getTotalStockQty(id: number): Observable<number> {
+    const url = `${this.baseUrl}/qty/${id}`;
+    return this.http
+      .get<number>(url)
+      .pipe(
+        tap(_ => this.log(`fetched total quantity for stock id=${id}`)),
+        catchError(this.handleError<number>(`getProduct id=${id}`))
+      );
+  }
   /** PUT **/
-  updateProduct(product: Product): Observable<any> {
+  updateProduct(product: Product): Observable<Product> {
     const url = `${this.baseUrl}/${product.id}`;
     return this.http
       .put(url, product, httpOptions)
@@ -73,7 +81,7 @@ export class ProductService {
       .post(url, product, httpOptions)
       .pipe(
         tap(_ => this.log(`created product id=${product.id}`)),
-        catchError(this.handleError<any>('createProduct'))
+        catchError(this.handleError<Product>('createProduct'))
       );
   }
   /** DELETE **/

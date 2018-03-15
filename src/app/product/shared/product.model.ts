@@ -1,8 +1,12 @@
+import { Stock } from '../../stock/shared/stock.model';
+
 export class Product {
   id: number;
-  status: string;
+  netPrice: number;
+  quantity: number;
   number: string;
   name: string;
-  price: number;
   barcode: string;
+  status: string;
+  stock: Stock;
 }

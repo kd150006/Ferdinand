@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Stock } from './stock.model';
-import { MessageService } from './../../message.service';
+import { MessageService } from './../../messages/shared/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -42,7 +42,7 @@ export class StockService {
   }
   /** PUT **/
   /*PUT: update a stock on the server */
-  updateStock(stock: Stock): Observable<any> {
+  updateStock(stock: Stock): Observable<Stock> {
     const url = `${this.baseUrl}/${stock.id}`;
     return this.http
       .put(url, stock, httpOptions)
@@ -51,6 +51,7 @@ export class StockService {
         catchError(this.handleError<any>('updateStock'))
       );
   }
+
   /** POST **/
   /*POST: create a new stock on the server */
   createStock(stock: Stock) {

@@ -1,0 +1,47 @@
+<form #userForm="ngForm">
+  <h2>New user: {{ user.firstName | uppercase }} {{ user.lastName | uppercase }}</h2>
+
+  <div class="form-group">
+    <label for="firstName">Firstname</label>
+    <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="John" required [(ngModel)]="user.firstName"
+      name="firstName" #firstName="ngModel">
+    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+      Firstname is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Lastname</label>
+    <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Doe" required [(ngModel)]="user.lastName"
+      name="lastName" #lastName="ngModel">
+    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+      Lastname is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="john.doe@example.com" required [(ngModel)]="user.email"
+      name="email" #email="ngModel">
+    <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+      Email is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Logon</label>
+    <input type="text" class="form-control" id="logon" aria-describedby="logon" placeholder="jdo" required [(ngModel)]="user.login"
+      name="logon" #login="ngModel">
+    <div [hidden]="login.valid || login.pristine" class="alert alert-danger">
+      Login is required
+    </div>
+  </div>
+
+  <div class="btn-group" role="group" aria-label="actions">
+    <button class="btn btn-primary" [disabled]="!userForm.form.valid" (click)="save()">Save</button>
+    <button class="btn btn-warning" (click)="userForm.reset();">Clear</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="navigation">
+    <button type="button" class="btn btn-secondary" (click)="goBack();">Back</button>
+  </div>
+</form>

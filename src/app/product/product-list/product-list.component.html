@@ -1,0 +1,25 @@
+<app-product-header #productHeader></app-product-header>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th>#</th>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Barcode</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let product of (products | searchByName : productHeader.searchText) | filterByStatus : productHeader.filterStatus ; let i = index">
+    <tr class="table-secondary">
+      <td hidden>{{ product.id }}</td>
+      <td hidden>{{ product.stock?.id }}</td>
+      <td>{{ i+1 }}</td>
+      <td>{{ product.number }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.barcode }}</td>
+      <td>{{ product.netPrice }}</td>
+      <button class="btn btn-info" routerLink="./id/{{product.id}}">Details</button>
+    </tr>
+  </tbody>
+</table>
