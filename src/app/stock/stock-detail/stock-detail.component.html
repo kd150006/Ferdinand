@@ -23,7 +23,6 @@
     <div class="form-row">
       <button class="btn btn-info" name="showMoreProducts" (click)="doShowMoreProducts()">{{ btnShowProductLabel }}</button>
     </div>
-
     <br>
     <div class="form-group" [hidden]="!showProducts">
       <div class="form-row">
@@ -50,6 +49,7 @@
         </tbody>
       </table>
     </div>
+
     <fieldset [disabled]="!canEdit">
       <div class="form-group" [hidden]="!showMore">
         <button name="btnStockStateActive" id="btnStockStateActive" value="ActiveState" placeholder="btnStockActiveState" *ngIf="stock.status === 'A'"

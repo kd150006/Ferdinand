@@ -1,49 +1,59 @@
 <div *ngIf="user">
-    <form class="form-inline justify-content-between">
-      <div class="form-group">
-        <h4>{{ user.firstName | uppercase }} {{ user.lastName | uppercase }} Details</h4>
-      </div>
-      <button class="btn btn-info" (click)="doShowMore()"> {{ btnShowLabel }} </button>
-    </form>
+  <form class="form-inline justify-content-between">
+    <div class="form-group">
+      <h4>{{ user.firstName | uppercase }} {{ user.lastName | uppercase }} Details</h4>
+    </div>
+    <button class="btn btn-info" (click)="doShowMore()"> {{ btnShowLabel }} </button>
+  </form>
 
-    <form #userDetailForm="ngForm">
-      <div class="form-col">
-        <fieldset [disabled]="!canEdit">
-          <div class="form-group">
-            <label for="firstName">Firstname</label>
-            <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel">
-            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
-              Firstname is required
-            </div>
+  <form #userDetailForm="ngForm">
+    <div class="form-col">
+      <fieldset [disabled]="!canEdit">
+        <div class="form-group">
+          <label for="firstName">Firstname</label>
+          <input type="text" class="form-control" id="firstName" required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel">
+          <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+            Firstname is required
           </div>
-          <div class="form-group">
-            <label for="lastName">Lastname</label>
-            <input type="text" class="form-control" id="lastName" required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel">
-            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
-              Lastname is required
-            </div>
-          </div>
-          <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" #price="ngModel">
-            </div>
-          <br>
-          <div class="form-group" [hidden]="!showMore">
-            <button *ngIf="user.status === 'A'" class="btn btn-outline-success" [(ngModel)]="user.status" (click)="onChangeActive()">Active</button>
-            <button *ngIf="user.status === 'I'" class="btn btn-outline-danger" [(ngModel)]="user.status" (click)="onChangeActive()">Inactive</button>
-          </div>
-        </fieldset>
-      </div>
-      <br>
-      <div class="form-row">
-        <div class="btn-group" role="group" aria-label="action">
-          <button class="btn btn-info" (click)="doEdit()"> {{ btnLockLabel }} </button>
-          <button class="btn btn-primary" [disabled]="!userDetailForm.form.valid" (click)="save()">Save</button>
-          <button class="btn btn-danger" (click)="delete()">Delete</button>
         </div>
-        <div class="btn-group" role="group" aria-label="navigation">
-          <button type="button" class="btn btn-secondary" (click)="goBack();">Back</button>
+        <div class="form-group">
+          <label for="lastName">Lastname</label>
+          <input type="text" class="form-control" id="lastName" required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel">
+          <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+            Lastname is required
+          </div>
         </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="user.email" name="email" #price="ngModel">
+        </div>
+        <br>
+        <div class="form-group" [hidden]="!showMore">
+          <div class="form-row">
+            <div class="btn-group" role="group" aria-label="status">
+              <button type="button" name="btnActiveTrue" *ngIf="user.status === 'A'" class="btn btn-outline-success" [(ngModel)]="user.status"
+                (click)="onChangeActive()">Active</button>
+              <button type="button" name="btnActiveFalse" *ngIf="user.status === 'I'" class="btn btn-outline-danger" [(ngModel)]="user.status"
+                (click)="onChangeActive()">Inactive</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="isAdmin">
+              <button type="button" name="btnAdminTrue" class="btn btn btn-outline-primary" *ngIf="user.isAdmin" [(ngModel)]="user.isAdmin" (click)="onChangeAdmin()">Admin</button>
+              <button type="button" name="btnAdminFalse" class="btn btn-outline-warning" *ngIf="!user.isAdmin" [(ngModel)]="user.isAdmin" (click)="onChangeAdmin()">User</button>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <br>
+    <div class="form-row">
+      <div class="btn-group" role="group" aria-label="action">
+        <button class="btn btn-info" (click)="doEdit()"> {{ btnLockLabel }} </button>
+        <button class="btn btn-primary" [disabled]="!userDetailForm.form.valid" (click)="save()">Save</button>
+        <button class="btn btn-danger" (click)="delete()">Delete</button>
       </div>
-    </form>
-  </div>
+      <div class="btn-group" role="group" aria-label="navigation">
+        <button type="button" class="btn btn-secondary" (click)="goBack();">Back</button>
+      </div>
+    </div>
+  </form>
+</div>

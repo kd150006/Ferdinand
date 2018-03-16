@@ -7,6 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Product } from './product.model';
 import { MessageService } from './../../messages/shared/message.service';
+import { GlobalVar } from './../../global';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +16,7 @@ const httpOptions = {
 
 @Injectable()
 export class ProductService {
-  private baseUrl = 'http://localhost:52035/api/products';
+  private baseUrl = GlobalVar.BASE_API_URL + '/products';
 
   constructor(
     private http: HttpClient,

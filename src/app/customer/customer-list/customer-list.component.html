@@ -1,0 +1,22 @@
+<app-customer-header #customerHeader></app-customer-header>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Number</th>
+      <th>Email</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let customer of (customers | searchBy : customerHeader.searchText) | filterByStatus : customerHeader.filterStatus; let i = index">
+    <tr class="table-secondary">
+      <td hidden>{{ customer.id }}</td>
+      <td>{{ i+1 }}</td>
+      <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+      <td>{{ customer.number }}</td>
+      <td>{{ customer.email }}</td>
+      <button class="btn btn-info" routerLink="./id/{{customer.id}}">Details</button>
+    </tr>
+  </tbody>
+</table>

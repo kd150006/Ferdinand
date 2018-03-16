@@ -22,7 +22,7 @@
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="john.doe@example.com" required [(ngModel)]="user.email"
-      name="email" #email="ngModel">
+      name="email" #email="ngModel" email>
     <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
       Email is required
     </div>
@@ -30,10 +30,19 @@
 
   <div class="form-group">
     <label for="name">Logon</label>
-    <input type="text" class="form-control" id="logon" aria-describedby="logon" placeholder="jdo" required [(ngModel)]="user.login"
+    <input type="text" class="form-control" id="logon" aria-describedby="logon" placeholder="Enter logon" required [(ngModel)]="user.login"
       name="logon" #login="ngModel">
     <div [hidden]="login.valid || login.pristine" class="alert alert-danger">
       Login is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Password</label>
+    <input type="password" class="form-control" id="password" aria-describedby="password" placeholder="Enter password" required [(ngModel)]="user.password"
+      name="password" #password="ngModel">
+    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+      Password is required
     </div>
   </div>
 

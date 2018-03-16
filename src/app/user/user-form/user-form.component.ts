@@ -16,8 +16,8 @@ export class UserFormComponent implements OnInit {
   constructor(private userService: UserService, private location: Location) {}
 
   ngOnInit() {
-  this.initUser();
-}
+    this.initUser();
+  }
   initUser(): void {
     this.user = new User();
     this.user.status = 'A';

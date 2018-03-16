@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './../shared/user.model';
 import { UserHeaderComponent } from './../user-header/user-header.component';
 import { UserService } from './../shared/user.service';
+
 import { SearchByPipe } from './../shared/search-by.pipe';
+import { FilterByStatusPipe } from './../shared/filter-by-status.pipe';
 
 @Component({
   selector: 'app-user-list',

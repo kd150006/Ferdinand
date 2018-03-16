@@ -32,13 +32,16 @@
             <label for="barcode">Barcode</label>
             <input type="text" class="form-control" id="barcode" [(ngModel)]="product.barcode" name="barcode" #barcode="ngModel">
           </div>
-          <div class="form-group" *ngIf="product.stock">
+
+          <div class="form-group">
             <label for="stockQuantity">Quantity in stock</label>
             <input type="number" class="form-control" id="stockQuantity" [(ngModel)]="product.quantity" name="stockQuantity" #stockQuantity="ngModel">
-            <label for="stockSelect">Stock</label>
-            <select [compareWith]="compareStockFn" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock">
-              <option *ngFor="let stock of stocks" [ngValue]="stock" [selected]="stock.name == product.stock.name"> {{ stock.name }} </option>
-            </select>
+            <fieldset [disabled]="!canChangeStock">
+              <label for="stockSelect">Stock</label>
+              <select [compareWith]="compareStockFn" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock">
+                <option *ngFor="let stock of stocks" [ngValue]="stock" [selected]="stock.name == product.stock.name"> {{ stock.name }} </option>
+              </select>
+            </fieldset>
           </div>
         </div>
         <br>
@@ -61,3 +64,4 @@
     </div>
   </form>
 </div>
+<h2>{{canChangeStock}} BLUUBB</h2>

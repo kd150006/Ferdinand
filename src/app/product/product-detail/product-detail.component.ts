@@ -17,10 +17,11 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   stocks: Stock[];
 
-  public canEdit: Boolean;
-  public showMore: Boolean;
-  public btnLockLabel: String;
-  public btnShowLabel: String;
+  public canEdit: boolean;
+  public showMore: boolean;
+  public btnLockLabel: string;
+  public btnShowLabel: string;
+  public canChangeStock: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,8 +36,17 @@ export class ProductDetailComponent implements OnInit {
     this.btnLockLabel = 'Unlock';
     this.showMore = false;
     this.btnShowLabel = 'More';
+    this.canChangeStock = false;
     this.getProduct();
     this.getStocks();
+  }
+
+  setCanChangeStockQty(): void {
+    if (this.product.quantity === 0 || this.product.quantity === null) {
+      this.canChangeStock = true;
+    } else {
+      this.canChangeStock = false;
+    }
   }
 
   compareStockFn(c1: Stock, c2: Stock): boolean {
@@ -59,6 +69,8 @@ export class ProductDetailComponent implements OnInit {
       this.showMore = true;
       this.btnShowLabel = 'Less';
     }
+    /* Dirty hack because ngOnInit is picky */
+    this.setCanChangeStockQty();
   }
 
   doEdit(): void {

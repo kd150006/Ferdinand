@@ -1,0 +1,61 @@
+<div *ngIf="customer">
+  <form class="form-inline justify-content-between">
+    <div class="form-group">
+      <h4>{{ customer.firstName | uppercase }} {{ customer.lastName | uppercase }} Details</h4>
+    </div>
+    <button class="btn btn-info" (click)="doShowMore()"> {{ btnShowLabel }} </button>
+  </form>
+
+  <form #customerDetailForm="ngForm">
+    <div class="form-col">
+      <fieldset [disabled]="!canEdit">
+        <div class="form-group">
+          <label for="firstName">Firstname</label>
+          <input type="text" class="form-control" id="firstName" required [(ngModel)]="customer.firstName" name="firstName" #firstName="ngModel">
+          <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+            Firstname is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Lastname</label>
+          <input type="text" class="form-control" id="lastName" required [(ngModel)]="customer.lastName" name="lastName" #lastName="ngModel">
+          <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+            Lastname is required
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="custNumber">Customer number</label>
+          <input type="text" class="form-control" id="custNumber" [(ngModel)]="customer.number" name="custNumber" #custNumber="ngModel">
+          <div [hidden]="custNumber.valid || custNumber.pristine" class="alert alert-danger">
+              Customer number is required
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="telephoneNumber">Telephone number</label>
+          <input type="text" class="form-control" id="telephoneNumber" [(ngModel)]="customer.telephoneNumber" name="telephoneNumber"
+            #telephoneNumber="ngModel">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="customer.emailAddress" name="email" #email="ngModel">
+        </div>
+        <br>
+        <div class="form-group" [hidden]="!showMore">
+          <button *ngIf="customer.status === 'A'" class="btn btn-outline-success" [(ngModel)]="customer.status" (click)="onChangeActive()">Active</button>
+          <button *ngIf="customer.status === 'I'" class="btn btn-outline-danger" [(ngModel)]="customer.status" (click)="onChangeActive()">Inactive</button>
+        </div>
+      </fieldset>
+    </div>
+    <br>
+    <div class="form-row">
+      <div class="btn-group" role="group" aria-label="action">
+        <button class="btn btn-info" (click)="doEdit()"> {{ btnLockLabel }} </button>
+        <button class="btn btn-primary" [disabled]="!customerDetailForm.form.valid" (click)="save()">Save</button>
+        <button class="btn btn-danger" (click)="delete()">Delete</button>
+      </div>
+      <div class="btn-group" role="group" aria-label="navigation">
+        <button type="button" class="btn btn-secondary" (click)="goBack();">Back</button>
+      </div>
+    </div>
+  </form>
+</div>

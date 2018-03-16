@@ -2,27 +2,26 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { User } from './../shared/user.model';
-import { UserService } from './../shared/user.service';
+import { Customer } from './../shared/customer.model';
+import { CustomerService } from './../shared/customer.service';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  selector: 'app-customer-detail',
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
-  @Input() user: User;
+export class CustomerDetailComponent implements OnInit {
+  @Input() customer: Customer;
   canEdit: boolean;
   showMore: boolean;
   btnShowLabel: string;
   btnLockLabel: string;
-  btnAdminLabel: string;
 
   constructor(
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
+    private customerService: CustomerService
   ) {}
 
   ngOnInit() {
@@ -30,22 +29,14 @@ export class UserDetailComponent implements OnInit {
     this.btnLockLabel = 'Unlock';
     this.showMore = false;
     this.btnShowLabel = 'More';
-    this.getUser();
+    this.getCustomer();
   }
 
   onChangeActive(): void {
-    if (this.user.status === 'A') {
-      this.user.status = 'I';
+    if (this.customer.status === 'A') {
+      this.customer.status = 'I';
     } else {
-      this.user.status = 'A';
-    }
-  }
-
-  onChangeAdmin(): void {
-    if (this.user.isAdmin) {
-      this.user.isAdmin = false;
-    } else {
-      this.user.isAdmin = true;
+      this.customer.status = 'A';
     }
   }
 
@@ -69,20 +60,28 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  getUser(): void {
+  getCustomer(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id).subscribe(user => (this.user = user));
+    this.customerService
+      .getCustomer(id)
+      .subscribe(customer => (this.customer = customer));
   }
   save(): void {
-    this.userService.updateUser(this.user).subscribe(() => this.goBack());
+    this.customerService
+      .updateCustomer(this.customer)
+      .subscribe(() => this.goBack());
   }
 
   delete(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.userService.deleteUser(id).subscribe(() => this.goBack());
+    this.customerService.deleteCustomer(id).subscribe(() => this.goHome());
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  goHome(): void {
+    this.router.navigateByUrl('/users');
   }
 }

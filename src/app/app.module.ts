@@ -6,16 +6,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+/* Global constants */
+
 /* Own modules */
 import { ProductsModule } from './product/product.module';
 import { StockModule } from './stock/stock.module';
 import { UserModule } from './user/user.module';
+import { CustomerModule } from './customer/customer.module';
 
 import { DashboardHeaderComponent } from './dashboard/dashboard-header/dashboard-header.component';
 import { DashboardBodyComponent } from './dashboard/dashboard-body/dashboard-body.component';
 import { DashboardFooterComponent } from './dashboard/dashboard-footer/dashboard-footer.component';
 import { HomeComponent } from './home/home.component';
-
 
 import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './messages/shared/message.service';
@@ -35,17 +37,16 @@ import { MessageService } from './messages/shared/message.service';
     HttpClientModule,
     FormsModule,
     ProductsModule,
-    UserModule,
     StockModule,
+    UserModule,
+    CustomerModule,
     AppRoutingModule
   ],
 
-  providers: [
-    MessageService
-  ],
+  providers: [MessageService],
 
   bootstrap: [AppComponent]
-
 })
-
-export class AppModule {}
+export class AppModule {
+  baseUrl = 'http://localhost:52035/api/';
+}

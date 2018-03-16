@@ -12,10 +12,15 @@ import { SearchByPipe } from './shared/search-by.pipe';
 import { FilterByStatusPipe } from './shared/filter-by-status.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule, FormsModule, UserRoutingModule
+  imports: [CommonModule, FormsModule, UserRoutingModule],
+  declarations: [
+    UserHeaderComponent,
+    UserListComponent,
+    UserDetailComponent,
+    UserFormComponent,
+    SearchByPipe,
+    FilterByStatusPipe
   ],
-  declarations: [UserHeaderComponent, UserListComponent, UserDetailComponent, UserFormComponent, SearchByPipe, FilterByStatusPipe],
   providers: [UserService]
 })
-export class UserModule { }
+export class UserModule {}

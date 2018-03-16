@@ -1,0 +1,53 @@
+<form #customerForm="ngForm">
+  <h2>New customer: {{ customer.firstName | uppercase }} {{ customer.lastName | uppercase }}</h2>
+
+  <div class="form-group">
+    <label for="firstName">Firstname</label>
+    <input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="John" required [(ngModel)]="customer.firstName"
+      name="firstName" #firstName="ngModel">
+    <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+      Firstname is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Lastname</label>
+    <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Doe" required [(ngModel)]="customer.lastName"
+      name="lastName" #lastName="ngModel">
+    <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+      Lastname is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="custNumber">Customer number</label>
+    <input type="text" class="form-control" id="custNumber" aria-describedby="custNumber" placeholder="Enter customer number"
+      required [(ngModel)]="customer.number" name="custNumber" #custNumber="ngModel">
+    <div [hidden]="custNumber.valid || custNumber.pristine" class="alert alert-danger">
+      Customer number is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="john.doe@example.com" required
+      [(ngModel)]="customer.emailAddress" name="emailAddress" #emailAddress="ngModel" email>
+    <div [hidden]="emailAddress.valid || emailAddress.pristine" class="alert alert-danger">
+      Email is required or not valid
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="telephoneNumber">Telephone number</label>
+    <input type="text" class="form-control" id="telephoneNumber" aria-describedby="telephoneNumber" placeholder="Enter telephone number"
+      [(ngModel)]="customer.telephoneNumber" name="telephoneNumber" #telephoneNumber="ngModel">
+  </div>
+
+  <div class="btn-group" role="group" aria-label="actions">
+    <button class="btn btn-primary" [disabled]="!customerForm.form.valid" (click)="save()">Save</button>
+    <button class="btn btn-warning" (click)="customerForm.reset();">Clear</button>
+  </div>
+  <div class="btn-group" role="group" aria-label="navigation">
+    <button type="button" class="btn btn-secondary" (click)="goBack();">Back</button>
+  </div>
+</form>

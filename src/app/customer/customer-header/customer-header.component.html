@@ -1,0 +1,22 @@
+<form class="form-inline justify-content-between">
+    <div class="form-group">
+      <button class="btn btn-primary" routerLink="./new">New</button>
+    </div>
+    <div class="form-group">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input active" type="radio" name="inlineRadioOptions" id="inlineRadio1" [(ngModel)]="filterStatus"
+          value="" checked>
+        <label class="form-check-label" for="inlineRadio1">Show all</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" [(ngModel)]="filterStatus" value="A">
+        <label class="form-check-label" for="inlineRadio2">Show active only</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" [(ngModel)]="filterStatus" value="I">
+        <label class="form-check-label" for="inlineRadio3">Show inactive only</label>
+      </div>
+      <input class="form-control" type="search" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search">
+    </div>
+  </form>
+<br>
