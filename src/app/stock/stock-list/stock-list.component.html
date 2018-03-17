@@ -1,14 +1,14 @@
 <app-stock-header #stockHeader></app-stock-header>
 <table class="table table-hover">
   <thead>
-    <tr class="table-primary">
+    <tr>
       <th>#</th>
       <th>Name</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody *ngFor="let stock of stocks | searchBy : stockHeader.searchText | filterByStatus : stockHeader.filterStatus; let i = index">
-    <tr class="table-secondary">
+    <tr>
       <td hidden>{{stock.id}}</td>
       <td>{{ i+1 }}</td>
       <td>{{stock.name}}</td>

@@ -1,7 +1,7 @@
 <app-product-header #productHeader></app-product-header>
 <table class="table table-hover">
   <thead>
-    <tr class="table-primary">
+    <tr>
       <th>#</th>
       <th>Number</th>
       <th>Name</th>
@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody *ngFor="let product of (products | searchByName : productHeader.searchText) | filterByStatus : productHeader.filterStatus ; let i = index">
-    <tr class="table-secondary">
+    <tr>
       <td hidden>{{ product.id }}</td>
       <td hidden>{{ product.stock?.id }}</td>
       <td>{{ i+1 }}</td>

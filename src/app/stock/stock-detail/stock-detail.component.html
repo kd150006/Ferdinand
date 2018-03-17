@@ -1,4 +1,5 @@
 <div *ngIf="stock">
+  <br>
   <form class="form-inline justify-content-between">
     <div class="form-group">
       <h4>{{ stock.name | uppercase }} Details</h4>
@@ -31,7 +32,7 @@
       <br>
       <table class="table table-hover">
         <thead>
-          <tr class="table-primary">
+          <tr>
             <th>#</th>
             <th>Name</th>
             <th>Available Quantity</th>
@@ -39,7 +40,7 @@
           </tr>
         </thead>
         <tbody *ngFor="let product of productsInStock | searchBy : searchText; let i = index">
-          <tr class="table-secondary">
+          <tr>
             <td hidden>{{product.id}}</td>
             <td>{{ i+1 }}</td>
             <td>{{product.name}}</td>
