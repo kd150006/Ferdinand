@@ -42,8 +42,8 @@ export class StockService {
         catchError(this.handleError<Stock>(`getStock id=${id}`))
       );
   }
-  /** PUT **/
-  /*PUT: update a stock on the server */
+  
+  /* PUT: update a stock on the server */
   updateStock(stock: Stock): Observable<Stock> {
     const url = `${this.baseUrl}/${stock.id}`;
     return this.http
@@ -54,8 +54,7 @@ export class StockService {
       );
   }
 
-  /** POST **/
-  /*POST: create a new stock on the server */
+  /* POST: create a new stock on the server */
   createStock(stock: Stock) {
   const url = `${this.baseUrl}`;
   return this.http
@@ -65,7 +64,7 @@ export class StockService {
       catchError(this.handleError<any>('createStock'))
     );
   }
-  /** DELETE **/
+  
   /* DELETE: delete the stock from the server */
   deleteStock(stock: Stock | number): Observable<Stock> {
     const id = typeof stock === 'number' ? stock : stock.id;
