@@ -1,5 +1,5 @@
 <div *ngIf="product">
-<br>
+  <br>
   <form class="form-inline justify-content-between">
     <div class="form-group">
       <h4>{{ product.name | uppercase }} Details</h4>
@@ -39,9 +39,14 @@
             <input type="number" class="form-control" id="stockQuantity" [(ngModel)]="product.quantity" name="stockQuantity" #stockQuantity="ngModel">
             <fieldset [disabled]="!canChangeStock">
               <label for="stockSelect">Stock</label>
+
               <select [compareWith]="compareStockFn" class="form-control" id="stock" name="stock" [(ngModel)]="product.stock">
-                <option *ngFor="let stock of stocks" [ngValue]="stock" [selected]="stock.name == product.stock.name"> {{ stock.name }} </option>
+                <option [ngValue]="null">-- none --</option>
+                <option *ngFor="let stock of stocks" [ngValue]="stock" [selected]="stock?.name == product.stock?.name">
+                  {{ stock?.name }} </option>
               </select>
+
+
             </fieldset>
           </div>
         </div>

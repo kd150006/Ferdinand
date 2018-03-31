@@ -32,13 +32,9 @@ export class ProductDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.canEdit = false;
-    this.btnLockLabel = 'Unlock';
-    this.showMore = false;
-    this.btnShowLabel = 'More';
-    this.canChangeStock = false;
     this.getProduct();
     this.getStocks();
+    this.initView();
   }
 
   setCanChangeStockQty(): void {
@@ -50,7 +46,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   compareStockFn(c1: Stock, c2: Stock): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+    if (c1 === null || c2 === null) {
+      return false;
+    } else {
+      return c1 && c2 ? c1.id === c2.id : c1 === c2;
+    }
   }
 
   onChangeActive(): void {
@@ -119,5 +119,13 @@ export class ProductDetailComponent implements OnInit {
   // Force a page refresh with this method
   goHome(): void {
     this.router.navigateByUrl('/products/#');
+  }
+
+  initView(): void {
+    this.canEdit = false;
+    this.btnLockLabel = 'Unlock';
+    this.showMore = false;
+    this.btnShowLabel = 'More';
+    this.canChangeStock = false;
   }
 }
